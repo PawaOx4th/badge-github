@@ -1,0 +1,14 @@
+{
+  "name": "badge-github",
+  "version": "0.1.0",
+  "description": "Adds one-click status badges (Solved, Skip, Approved, In Review) to GitHub comment boxes.",
+  "scripts": {
+    "icons": "node scripts/gen-icons.js",
+    "build:chrome": "node build-manifests.js chrome",
+    "build:firefox": "node build-manifests.js firefox",
+    "build": "node build-manifests.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
+}
