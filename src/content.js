@@ -11,7 +11,6 @@ function processUiElements() {
 }
 
 function handleUrlChange() {
-  isProcessing = false;
   processUiElements();
   setTimeout(processUiElements, 500);
   setTimeout(processUiElements, 1000);
@@ -72,8 +71,6 @@ function main() {
   observer.observe(document.body, {
     childList: true,
     subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "id"],
   });
 
   document.addEventListener("visibilitychange", () => {
