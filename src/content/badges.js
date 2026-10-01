@@ -17,7 +17,7 @@ function escapeBadgeText(text) {
 export function createBadgeMarkdown(label) {
   const option = OPTIONS.find((item) => item.label === label);
   const color = (option ? option.color : "#6B7280").substring(1);
-  const url = `${SHIELDS_PREFIX}${escapeBadgeText(label)}-${color}`;
+  const url = `${SHIELDS_PREFIX}${escapeBadgeText(label)}-${color}?style=for-the-badge`;
   return `![${label}](${url})`;
 }
 

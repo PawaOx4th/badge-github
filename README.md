@@ -12,10 +12,10 @@
 
 | ปุ่ม | สี | Markdown ที่แทรก |
 |------|-----|-------------------|
-| Solved | เขียว `#28A745` | `![Solved](https://img.shields.io/badge/Solved-28A745)` |
-| Skip | เทา `#6B7280` | `![Skip](https://img.shields.io/badge/Skip-6B7280)` |
-| Approved | น้ำเงิน `#3B82F6` | `![Approved](https://img.shields.io/badge/Approved-3B82F6)` |
-| In Review | เหลือง `#F59E0B` | `![In Review](https://img.shields.io/badge/In_Review-F59E0B)` |
+| Solved | เขียว `#28A745` | `![Solved](https://img.shields.io/badge/Solved-28A745?style=for-the-badge)` |
+| Skip | เทา `#6B7280` | `![Skip](https://img.shields.io/badge/Skip-6B7280?style=for-the-badge)` |
+| Approved | น้ำเงิน `#3B82F6` | `![Approved](https://img.shields.io/badge/Approved-3B82F6?style=for-the-badge)` |
+| In Review | เหลือง `#F59E0B` | `![In Review](https://img.shields.io/badge/In_Review-F59E0B?style=for-the-badge)` |
 
 ป้ายเป็นรูปภาพ Markdown ธรรมดา (ไม่มีลิงก์คลิก) โดยป้ายจะแสดงผลด้วยสีตามที่กำหนด
 ผ่านบริการ shields.io ตอนที่ GitHub เรนเดอร์คอมเมนต์
