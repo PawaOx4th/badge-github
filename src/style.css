@@ -66,3 +66,11 @@ html[data-color-mode="dark"] .cc-button-active {
   border-color: var(--color-accent-fg, #58a6ff);
   background-color: var(--color-accent-subtle, rgba(56, 139, 253, 0.15));
 }
+
+html[data-color-mode="light"] .cc-button:hover {
+  border-color: var(--color-accent-fg, #0969da);
+}
+
+html[data-color-mode="dark"] .cc-button:hover {
+  border-color: var(--color-accent-fg, #58a6ff);
+}
