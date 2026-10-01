@@ -42,11 +42,14 @@ async function bundleScript(entryPoint, outFile, shouldMinify) {
 }
 
 function baseManifest() {
-  return JSON.parse(fs.readFileSync("./manifest-base.json", "utf8"));
+  return JSON.parse(
+    fs.readFileSync(path.join(__dirname, "manifest-base.json"), "utf8")
+  );
 }
 
 async function buildChrome(buildMode) {
   const chromeDir = path.join(__dirname, "build", "chrome");
+  fs.rmSync(chromeDir, { recursive: true, force: true });
   ensureDirectoryExists(chromeDir);
 
   const chromeManifest = {
@@ -63,19 +66,26 @@ async function buildChrome(buildMode) {
   );
 
   await bundleScript(
-    "./src/content.js",
+    path.join(__dirname, "src", "content.js"),
     path.join(chromeDir, "content.js"),
     buildMode === "prod"
   );
-  copyFile("./src/background.js", path.join(chromeDir, "background.js"));
-  copyFile("./src/style.css", path.join(chromeDir, "style.css"));
-  copyDirectory("./icons", path.join(chromeDir, "icons"));
+  copyFile(
+    path.join(__dirname, "src", "background.js"),
+    path.join(chromeDir, "background.js")
+  );
+  copyFile(
+    path.join(__dirname, "src", "style.css"),
+    path.join(chromeDir, "style.css")
+  );
+  copyDirectory(path.join(__dirname, "icons"), path.join(chromeDir, "icons"));
 
   console.log("Chrome build completed successfully!");
 }
 
 async function buildFirefox(buildMode) {
   const firefoxDir = path.join(__dirname, "build", "firefox");
+  fs.rmSync(firefoxDir, { recursive: true, force: true });
   ensureDirectoryExists(firefoxDir);
 
   const firefoxManifest = {
@@ -96,13 +106,19 @@ async function buildFirefox(buildMode) {
   );
 
   await bundleScript(
-    "./src/content.js",
+    path.join(__dirname, "src", "content.js"),
     path.join(firefoxDir, "content.js"),
     buildMode === "prod"
   );
-  copyFile("./src/background.js", path.join(firefoxDir, "background.js"));
-  copyFile("./src/style.css", path.join(firefoxDir, "style.css"));
-  copyDirectory("./icons", path.join(firefoxDir, "icons"));
+  copyFile(
+    path.join(__dirname, "src", "background.js"),
+    path.join(firefoxDir, "background.js")
+  );
+  copyFile(
+    path.join(__dirname, "src", "style.css"),
+    path.join(firefoxDir, "style.css")
+  );
+  copyDirectory(path.join(__dirname, "icons"), path.join(firefoxDir, "icons"));
 
   console.log("Firefox build completed successfully!");
 }
