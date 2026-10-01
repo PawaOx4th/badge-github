@@ -32,6 +32,8 @@ export function getLeadingBadge(value) {
 
 function applyOption(textarea, label) {
   const value = textarea.value;
+  const selectionStart = textarea.selectionStart;
+  const selectionEnd = textarea.selectionEnd;
   const leading = getLeadingBadge(value);
   const body = (leading ? value.substring(leading.length) : value).replace(
     /^\s+/,
@@ -48,10 +50,17 @@ function applyOption(textarea, label) {
     selected = label;
   }
 
+  const oldPrefixLen = leading ? leading.length : 0;
+  const newPrefixLen = newValue.length - body.length;
+  const delta = newPrefixLen - oldPrefixLen;
+
   textarea.value = newValue;
   textarea.dispatchEvent(new Event("input", { bubbles: true }));
   textarea.dispatchEvent(new Event("change", { bubbles: true }));
   textarea.focus();
+  const clamp = (position) =>
+    Math.max(0, Math.min(newValue.length, position + delta));
+  textarea.setSelectionRange(clamp(selectionStart), clamp(selectionEnd));
   return selected;
 }
 
@@ -79,24 +88,13 @@ function renderToolbar(toolbar, textarea) {
 }
 
 function initializeToolbarForTextarea(textarea) {
-  if (!textarea.id) {
-    textarea.id = `cc-textarea-${Date.now()}-${Math.random()
-      .toString(36)
-      .substring(2, 7)}`;
-  }
-
-  textarea.placeholder = "Add your comment here...";
-
   const toolbar = document.createElement("div");
   toolbar.classList.add("cc-toolbar");
-  toolbar.dataset.textareaId = textarea.id;
 
   const leading = getLeadingBadge(textarea.value);
   toolbar.dataset.selectedLabel = leading ? leading.label : "";
 
   renderToolbar(toolbar, textarea);
-
-  textarea.classList.add(TOOLBAR_MARKER_CLASS);
 
   const githubWrapper = textarea.closest(
     '[class*="MarkdownInput-module__textArea"], [class*="TextInputBaseWrapper"]'
@@ -105,6 +103,7 @@ function initializeToolbarForTextarea(textarea) {
   const parent = anchor.parentNode;
   if (parent) {
     parent.insertBefore(toolbar, anchor);
+    textarea.classList.add(TOOLBAR_MARKER_CLASS);
   }
 }
 
@@ -117,11 +116,7 @@ export function processCommentAreas() {
 
 export function checkAndInitializeAddedTextareas(node) {
   const query = Platform.getUnprocessedTextareaQuery();
-  if (
-    node.matches &&
-    node.matches(query) &&
-    !node.classList.contains(TOOLBAR_MARKER_CLASS)
-  ) {
+  if (node.matches && node.matches(query)) {
     initializeToolbarForTextarea(node);
   } else if (node.querySelectorAll) {
     node.querySelectorAll(query).forEach((textarea) => {
