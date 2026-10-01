@@ -102,9 +102,17 @@ function initializeToolbarForTextarea(textarea) {
   const anchor = githubWrapper || textarea;
   const parent = anchor.parentNode;
   if (parent) {
+    removeCommentBoxPlaceholder(textarea);
     parent.insertBefore(toolbar, anchor);
     textarea.classList.add(TOOLBAR_MARKER_CLASS);
   }
+}
+
+function removeCommentBoxPlaceholder(textarea) {
+  const container = textarea.closest(".CommentBox-container");
+  if (!container) return;
+  const placeholder = container.querySelector(".CommentBox-placeholder");
+  if (placeholder) placeholder.remove();
 }
 
 export function processCommentAreas() {
