@@ -8,15 +8,16 @@
 แต่ลดรูปเหลือแถวเดียว 4 ตัวเลือก ไม่มีขั้นตอนเลือก decoration, ไม่มี GitLab, ไม่มี Slack
 และไม่มีหน้าตั้งค่า
 
-## ตัวเลือกทั้ง 5
+## ตัวเลือกทั้ง 6
 
 | ปุ่ม | สี | Markdown ที่แทรก |
 |------|-----|-------------------|
 | Solved | เขียว `#28A745` | `![Solved](https://img.shields.io/badge/Solved-28A745?style=for-the-badge)` |
 | Skip | เทา `#6B7280` | `![Skip](https://img.shields.io/badge/Skip-6B7280?style=for-the-badge)` |
-| Approved | น้ำเงิน `#3B82F6` | `![Approved](https://img.shields.io/badge/Approved-3B82F6?style=for-the-badge)` |
-| In Review | เหลือง `#F59E0B` | `![In Review](https://img.shields.io/badge/In_Review-F59E0B?style=for-the-badge)` |
-| Date Time | เขียวใส `#10B981` | `![Date Time](https://img.shields.io/badge/02%2F10%2F2026%2010%3A56-10B981?style=for-the-badge)` (เวลาในป้ายคือวัน/เวลา ณ ตอนคลิก รูปแบบ `DD/MM/YYYY HH:mm`) |
+| In Review | เหลือง `#F59E0B` | `![In Review](https://img.shields.io/badge/In_Review_--_02%2F10%2F2026_10%3A56-F59E0B?style=for-the-badge)` (เวลาในป้ายคือวัน/เวลา ณ ตอนคลิก รูปแบบ `In Review - DD/MM/YYYY HH:mm`) |
+| Request Change | แดง `#DC2626` | `![Request Change](https://img.shields.io/badge/Request_Change-DC2626?style=for-the-badge)` |
+| Comment | ม่วง `#8B5CF6` | `![Comment](https://img.shields.io/badge/Comment-8B5CF6?style=for-the-badge)` |
+| Approve | น้ำเงิน `#3B82F6` | `![Approve](https://img.shields.io/badge/Approve_--_02%2F10%2F2026_10%3A56-3B82F6?style=for-the-badge)` (เวลาในป้ายคือวัน/เวลา ณ ตอนคลิก รูปแบบ `Approve - DD/MM/YYYY HH:mm`) |
 
 ป้ายเป็นรูปภาพ Markdown ธรรมดา (ไม่มีลิงก์คลิก) โดยป้ายจะแสดงผลด้วยสีตามที่กำหนด
 ผ่านบริการ shields.io ตอนที่ GitHub เรนเดอร์คอมเมนต์

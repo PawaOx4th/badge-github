@@ -16,16 +16,27 @@ export function formatDateTime(date = new Date()) {
 export const OPTIONS = [
   { label: "Solved", color: "#28A745" },
   { label: "Skip", color: "#6B7280" },
-  { label: "Approved", color: "#3B82F6" },
-  { label: "In Review", color: "#F59E0B" },
-  { label: "Date Time", color: "#10B981", dynamicText: formatDateTime },
+  {
+    label: "In Review",
+    color: "#F59E0B",
+    dynamicText: (date) => `In Review - ${formatDateTime(date)}`,
+  },
+  { label: "Request Change", color: "#DC2626" },
+  { label: "Comment", color: "#8B5CF6" },
+  {
+    label: "Approve",
+    color: "#3B82F6",
+    dynamicText: (date) => `Approve - ${formatDateTime(date)}`,
+  },
 ];
 
 const LEADING_BADGE_REGEX = /^\s*!\[([^\]]+)\]\(([^)]+)\)\s*/;
 const SHIELDS_PREFIX = "https://img.shields.io/badge/";
 
 function escapeBadgeText(text) {
-  return encodeURIComponent(text.replace(/_/g, "__").replace(/ /g, "_"));
+  return encodeURIComponent(
+    text.replace(/_/g, "__").replace(/-/g, "--").replace(/ /g, "_")
+  );
 }
 
 export function createBadgeMarkdown(label) {
