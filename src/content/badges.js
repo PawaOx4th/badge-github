@@ -1,10 +1,24 @@
 import Platform, { TOOLBAR_MARKER_CLASS } from "./platform.js";
 
+function pad2(value) {
+  return value < 10 ? `0${value}` : String(value);
+}
+
+export function formatDateTime(date = new Date()) {
+  const day = pad2(date.getDate());
+  const month = pad2(date.getMonth() + 1);
+  const year = date.getFullYear();
+  const hours = pad2(date.getHours());
+  const minutes = pad2(date.getMinutes());
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
+
 export const OPTIONS = [
   { label: "Solved", color: "#28A745" },
   { label: "Skip", color: "#6B7280" },
   { label: "Approved", color: "#3B82F6" },
   { label: "In Review", color: "#F59E0B" },
+  { label: "Date Time", color: "#10B981", dynamicText: formatDateTime },
 ];
 
 const LEADING_BADGE_REGEX = /^\s*!\[([^\]]+)\]\(([^)]+)\)\s*/;
@@ -17,8 +31,10 @@ function escapeBadgeText(text) {
 export function createBadgeMarkdown(label) {
   const option = OPTIONS.find((item) => item.label === label);
   const color = (option ? option.color : "#6B7280").substring(1);
-  const url = `${SHIELDS_PREFIX}${escapeBadgeText(label)}-${color}?style=for-the-badge`;
-  return `![${label}](${url})`;
+  const displayText = option && option.dynamicText ? option.dynamicText() : label;
+  const altText = option && option.dynamicText ? label : displayText;
+  const url = `${SHIELDS_PREFIX}${escapeBadgeText(displayText)}-${color}?style=for-the-badge`;
+  return `![${altText}](${url})`;
 }
 
 export function getLeadingBadge(value) {
