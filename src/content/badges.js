@@ -23,6 +23,7 @@ export const OPTIONS = [
   },
   { label: "Request Change", color: "#DC2626" },
   { label: "Comment", color: "#8B5CF6" },
+  { label: "TODO", color: "#8B5CF6" },
   {
     label: "Approve",
     color: "#3B82F6",
